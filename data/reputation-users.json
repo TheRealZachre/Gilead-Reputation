@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": "b1f3a9d2-7c84-4e51-9a6f-2d0c6e4b8a11",
+      "name": "Gilead Admin",
+      "email": "admin@gilead.com",
+      "username": "admin",
+      "passwordHash": "$2b$12$2jxC/qLZhHS57IwJerF9YOmyWGoFCg3zwfFQw9XRJT./reNjKo8QG",
+      "role": "admin",
+      "createdAt": "2026-07-22T22:00:00.000Z"
+    }
+  ]
+}

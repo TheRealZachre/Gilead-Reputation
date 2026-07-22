@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "../styles/reputation.css";
+
+:root {
+  --brand-ink: #0f2344;
+  --brand-paper: #ffffff;
+  --brand-stage: #0f2344;
+  --brand-off-white: #f0f4fa;
+  --brand-indigo: #d32e27;
+  --brand-indigo-bright: #e8433c;
+  --brand-muted: #5a6a82;
+  --brand-border: #1e3a5c;
+  --background: var(--brand-paper);
+  --foreground: var(--brand-ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-paper: var(--brand-paper);
+  --color-brand-stage: var(--brand-stage);
+  --color-brand-off-white: var(--brand-off-white);
+  --color-brand-indigo: var(--brand-indigo);
+  --color-brand-indigo-bright: var(--brand-indigo-bright);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-border: var(--brand-border);
+  --font-sans: var(--font-brand-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-dm-serif), ui-serif, Georgia, serif;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.reputation-shell .tab {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
