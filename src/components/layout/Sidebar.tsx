@@ -5,12 +5,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   BookOpen,
-  Building2,
   ChevronDown,
-  LayoutDashboard,
-  MessageSquareText,
-  Shield,
   Star,
+  Shield,
   type LucideIcon,
 } from "lucide-react";
 import clsx from "clsx";
@@ -26,19 +23,19 @@ type NavNode =
   | { kind: "group"; id: string; label: string; icon: LucideIcon; children: NavChild[] };
 
 const navItems: NavNode[] = [
-  { kind: "link", href: "/", label: "Overview", icon: LayoutDashboard, exact: true },
   {
     kind: "group",
-    id: "reviews",
-    label: "Reviews",
+    id: "glassdoor-indeed",
+    label: "Glassdoor and Indeed",
     icon: Star,
     children: [
+      { href: "/", label: "Overview", exact: true },
       { href: "/glassdoor", label: "Glassdoor" },
       { href: "/indeed", label: "Indeed" },
+      { href: "/competitors", label: "Competitors" },
+      { href: "/replies", label: "Copy replies" },
     ],
   },
-  { kind: "link", href: "/competitors", label: "Competitors", icon: Building2 },
-  { kind: "link", href: "/replies", label: "Copy replies", icon: MessageSquareText },
   {
     kind: "group",
     id: "wikipedia",
