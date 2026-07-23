@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  BookOpen,
   Building2,
   FileText,
   LayoutDashboard,
@@ -23,6 +24,7 @@ const navLinks: { href: string; label: string; icon: LucideIcon; exact?: boolean
   { href: "/indeed", label: "Indeed", icon: FileText },
   { href: "/competitors", label: "Competitors", icon: Building2 },
   { href: "/replies", label: "Copy replies", icon: MessageSquareText },
+  { href: "/wikipedia", label: "Wikipedia", icon: BookOpen },
 ];
 
 export function Sidebar({
