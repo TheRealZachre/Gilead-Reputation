@@ -25,6 +25,7 @@ import {
 import { RatingTrendsSection } from "./RatingTrendsSection";
 import { CompetitorsTab } from "./CompetitorsPage";
 import { PlaybookTab } from "./ScorePlaybook";
+import { RefreshButton } from "./RefreshButton";
 import { CopyReply, SortableHead, useSortedRows, type SortColumn } from "./shared";
 
 const GLASSDOOR_REVIEW_COLUMNS: SortColumn<(typeof COMPANY.glassdoor.recentReviews)[number]>[] = [
@@ -163,6 +164,8 @@ function GlassdoorTab() {
         <span className="pill pill-warn">Comp −4% YoY</span>
         <span className="pill">CEO: {COMPANY.glassdoor.ceoName}</span>
       </div>
+
+      <RefreshButton platform="Glassdoor" />
 
       <div className="stats">
         <div className="stat">
@@ -309,6 +312,8 @@ function IndeedTab() {
         <span className="pill pill-warn">2026 YTD 3.0★</span>
         <span className="pill pill-info">Wellbeing {COMPANY.indeed.wellbeing} · Above avg</span>
       </div>
+
+      <RefreshButton platform="Indeed" />
 
       <div className="stats">
         <div className="stat">

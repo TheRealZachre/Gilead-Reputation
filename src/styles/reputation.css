@@ -421,6 +421,38 @@ tr:last-child td {
   font-size: 0.85rem;
 }
 
+.refresh-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.refresh-msg {
+  flex-basis: 100%;
+}
+
+@keyframes rep-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.reputation-shell .spin {
+  animation: rep-spin 0.8s linear infinite;
+}
+
 @media (max-width: 800px) {
   .stats,
   .two-col {
