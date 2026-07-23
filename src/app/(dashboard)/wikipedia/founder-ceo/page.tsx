@@ -13,7 +13,7 @@ export default function WikipediaFounderCeoPage() {
       />
       <WikipediaSubnav />
 
-      <div className="mx-auto w-full max-w-3xl space-y-6 px-8 py-8">
+      <div className="mx-auto w-full max-w-3xl space-y-6 px-4 py-6 sm:px-8 sm:py-8">
         <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
           <div className="flex gap-3">
             <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />

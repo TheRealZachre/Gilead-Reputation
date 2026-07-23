@@ -20,7 +20,7 @@ export function WikipediaPageShell({
     <>
       <Header title={title} subtitle={subtitle} />
       <WikipediaSubnav />
-      <div className="space-y-8 p-8">{children}</div>
+      <div className="space-y-8 p-4 sm:p-8">{children}</div>
     </>
   );
 }

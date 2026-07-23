@@ -13,7 +13,7 @@ export function WikipediaSubnav() {
   const pathname = usePathname();
 
   return (
-    <div className="border-b border-slate-200 bg-white px-8">
+    <div className="border-b border-slate-200 bg-white px-4 sm:px-8">
       <nav className="-mb-px flex gap-6 overflow-x-auto">
         {links.map(({ href, label, exact }) => {
           const active = exact ? pathname === href : pathname.startsWith(href);

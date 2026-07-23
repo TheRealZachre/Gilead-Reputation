@@ -56,9 +56,11 @@ const inactiveClasses = "text-white/70 hover:bg-white/8 hover:text-white";
 export function Sidebar({
   isAdmin = false,
   user,
+  onNavigate,
 }: {
   isAdmin?: boolean;
   user?: SessionUserDisplay | null;
+  onNavigate?: () => void;
 }) {
   const pathname = usePathname();
   const adminActive = pathname.startsWith("/admin");
@@ -83,6 +85,7 @@ export function Sidebar({
         {isAdmin && (
           <Link
             href="/admin"
+            onClick={onNavigate}
             className={clsx(linkBase, adminActive ? activeClasses : inactiveClasses)}
           >
             <Shield className="h-4 w-4 shrink-0" />
@@ -100,6 +103,7 @@ export function Sidebar({
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={onNavigate}
                 className={clsx(linkBase, active ? activeClasses : inactiveClasses)}
               >
                 <Icon className="h-4 w-4 shrink-0" />
@@ -142,6 +146,7 @@ export function Sidebar({
                       <Link
                         key={child.href}
                         href={child.href}
+                        onClick={onNavigate}
                         className={clsx(
                           "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                           active ? activeClasses : inactiveClasses

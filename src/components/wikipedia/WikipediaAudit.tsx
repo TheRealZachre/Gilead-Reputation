@@ -230,7 +230,7 @@ export function WikipediaAudit({
   const grade = review?.quality_tier ? TIER_LABEL[review.quality_tier] : null;
 
   return (
-    <div className="flex flex-col gap-6 p-8">
+    <div className="flex flex-col gap-6 p-4 sm:p-6 lg:p-8">
 
       {showLeadershipGap && (
       <section className="rounded-xl border border-amber-200 bg-amber-50 p-5">
@@ -404,7 +404,7 @@ export function WikipediaAudit({
           )}
 
           {/* ── Stats grid ────────────────────────────────────── */}
-          <div className="grid grid-cols-3 gap-px rounded-xl border border-brand-ink/8 overflow-hidden bg-brand-ink/8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-px rounded-xl border border-brand-ink/8 overflow-hidden bg-brand-ink/8">
             {[
               { value: fmt(analytics.metrics.total_views), label: "Total views" },
               { value: fmt(analytics.metrics.avg_daily_views), label: "Avg / day" },
