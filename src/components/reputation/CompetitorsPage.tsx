@@ -15,31 +15,35 @@ import { SCORECARD } from "@/lib/reputation/data";
 export function CompetitorsTab() {
   const gdChart = [
     { name: "Gilead", score: 3.5 },
-    { name: "BeOne", score: 3.6 },
+    { name: "ViiV", score: 3.7 },
     { name: "BMS", score: 3.7 },
-    { name: "Amgen", score: 3.8 },
-    { name: "AstraZeneca", score: 4.0 },
+    { name: "AbbVie", score: 3.9 },
+    { name: "Novartis", score: 4.0 },
+    { name: "Janssen", score: 4.0 },
+    { name: "Merck", score: 4.1 },
   ];
   const indeedChart = [
-    { name: "BeOne", score: 3.4 },
     { name: "Gilead", score: 3.5 },
-    { name: "AstraZeneca", score: 4.0 },
-    { name: "Amgen", score: 4.0 },
+    { name: "ViiV", score: 3.8 },
+    { name: "AbbVie", score: 3.8 },
+    { name: "Novartis", score: 4.0 },
+    { name: "Merck", score: 4.1 },
     { name: "BMS", score: 4.1 },
+    { name: "Janssen", score: 4.2 },
   ];
   const categoryGap = [
-    { name: "Comp", Gilead: 4.5, AstraZeneca: 4.1 },
-    { name: "Culture", Gilead: 3.4, AstraZeneca: 3.9 },
-    { name: "Career", Gilead: 3.4, AstraZeneca: 3.7 },
-    { name: "Management", Gilead: 3.1, AstraZeneca: 3.5 },
-    { name: "WLB", Gilead: 3.3, AstraZeneca: 3.8 },
+    { name: "Comp", Gilead: 4.5, Novartis: 4.0 },
+    { name: "Culture", Gilead: 3.4, Novartis: 3.9 },
+    { name: "Career", Gilead: 3.4, Novartis: 3.7 },
+    { name: "Management", Gilead: 3.1, Novartis: 3.5 },
+    { name: "WLB", Gilead: 3.3, Novartis: 3.9 },
   ];
 
   return (
     <div className="stack">
       <p className="muted">
-        AstraZeneca, Amgen, Bristol Myers Squibb, and BeOne vs Gilead. Public Glassdoor
-        & Indeed data · Jul 22, 2026.
+        ViiV Healthcare, Merck, Janssen (J&J), Bristol Myers Squibb, Novartis, and AbbVie
+        vs Gilead. Public Glassdoor & Indeed data · Jul 22, 2026.
       </p>
 
       <section>
@@ -108,14 +112,14 @@ export function CompetitorsTab() {
 
       <div className="two-col">
         <article className="card">
-          <h3>AstraZeneca / Amgen pattern</h3>
+          <h3>Merck / Novartis / Janssen pattern</h3>
           <p>
-            Engaged Employer badge, awards surface, rich Why Work With Us modules, high
-            update volume, large photo libraries.
+            Engaged Employer profiles, awards surfaces, rich Why Work With Us modules,
+            high update volume, and large photo libraries.
           </p>
           <p className="muted">
-            Stronger recommend rates and Indeed wellbeing even when category scores aren’t
-            perfect.
+            Recommend rates (80–82%), CEO approval (86–88%), and Indeed ratings (4.0–4.2)
+            all run well ahead of Gilead.
           </p>
         </article>
         <article className="card">
@@ -126,14 +130,15 @@ export function CompetitorsTab() {
             sliding ~4% as recent leadership changes weigh on culture.
           </p>
           <p className="muted">
-            CEO approval (70% GD / 58% Indeed) trails AstraZeneca and Amgen — reinforce
-            it with transparent reorg communication while fixing manager-level culture.
+            CEO approval (70% GD / 58% Indeed) trails Merck, Novartis, and Janssen (J&J) —
+            reinforce it with transparent reorg communication while fixing manager-level
+            culture.
           </p>
         </article>
       </div>
 
       <section>
-        <h2>Glassdoor category gap vs AstraZeneca</h2>
+        <h2>Glassdoor category gap vs Novartis</h2>
         <div className="chart">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={categoryGap}>
@@ -143,12 +148,12 @@ export function CompetitorsTab() {
               <Tooltip />
               <Legend />
               <Bar dataKey="Gilead" fill="#f0a202" radius={4} />
-              <Bar dataKey="AstraZeneca" fill="#3ecf8e" radius={4} />
+              <Bar dataKey="Novartis" fill="#3ecf8e" radius={4} />
             </BarChart>
           </ResponsiveContainer>
         </div>
         <p className="muted">
-          Gilead leads on comp & benefits (4.5); trails AstraZeneca on culture, career, management, and WLB.
+          Gilead leads on comp & benefits (4.5); trails Novartis on culture, career, management, and WLB.
         </p>
       </section>
     </div>
