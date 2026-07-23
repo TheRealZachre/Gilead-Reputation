@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   BookOpen,
   Building2,
-  FileText,
+  ChevronDown,
   LayoutDashboard,
   MessageSquareText,
   Shield,
@@ -18,14 +19,42 @@ import { BRAND_ASSETS } from "@/lib/brand";
 import { POWERED_BY_NAME } from "@/lib/company";
 import { UserMenu, type SessionUserDisplay } from "./UserMenu";
 
-const navLinks: { href: string; label: string; icon: LucideIcon; exact?: boolean }[] = [
-  { href: "/", label: "Overview", icon: LayoutDashboard, exact: true },
-  { href: "/glassdoor", label: "Glassdoor", icon: Star },
-  { href: "/indeed", label: "Indeed", icon: FileText },
-  { href: "/competitors", label: "Competitors", icon: Building2 },
-  { href: "/replies", label: "Copy replies", icon: MessageSquareText },
-  { href: "/wikipedia", label: "Wikipedia", icon: BookOpen },
+type NavChild = { href: string; label: string; exact?: boolean };
+
+type NavNode =
+  | { kind: "link"; href: string; label: string; icon: LucideIcon; exact?: boolean }
+  | { kind: "group"; id: string; label: string; icon: LucideIcon; children: NavChild[] };
+
+const navItems: NavNode[] = [
+  { kind: "link", href: "/", label: "Overview", icon: LayoutDashboard, exact: true },
+  {
+    kind: "group",
+    id: "reviews",
+    label: "Reviews",
+    icon: Star,
+    children: [
+      { href: "/glassdoor", label: "Glassdoor" },
+      { href: "/indeed", label: "Indeed" },
+    ],
+  },
+  { kind: "link", href: "/competitors", label: "Competitors", icon: Building2 },
+  { kind: "link", href: "/replies", label: "Copy replies", icon: MessageSquareText },
+  {
+    kind: "group",
+    id: "wikipedia",
+    label: "Wikipedia",
+    icon: BookOpen,
+    children: [
+      { href: "/wikipedia/corporate", label: "Corporate" },
+      { href: "/wikipedia/founder-ceo", label: "Chairman & CEO" },
+    ],
+  },
 ];
+
+const linkBase =
+  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors";
+const activeClasses = "bg-white/15 text-white";
+const inactiveClasses = "text-white/70 hover:bg-white/8 hover:text-white";
 
 export function Sidebar({
   isAdmin = false,
@@ -37,6 +66,16 @@ export function Sidebar({
   const pathname = usePathname();
   const adminActive = pathname.startsWith("/admin");
 
+  const isChildActive = (child: NavChild) =>
+    child.exact
+      ? pathname === child.href
+      : pathname === child.href || pathname.startsWith(`${child.href}/`);
+
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+
+  const toggleGroup = (id: string) =>
+    setOpenGroups((prev) => ({ ...prev, [id]: !prev[id] }));
+
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-brand-border bg-brand-stage text-brand-off-white">
       <div className="border-b border-brand-border px-5 py-5">
@@ -47,34 +86,77 @@ export function Sidebar({
         {isAdmin && (
           <Link
             href="/admin"
-            className={clsx(
-              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-              adminActive
-                ? "bg-white/15 text-white"
-                : "text-white/70 hover:bg-white/8 hover:text-white"
-            )}
+            className={clsx(linkBase, adminActive ? activeClasses : inactiveClasses)}
           >
             <Shield className="h-4 w-4 shrink-0" />
             Platform Admin
           </Link>
         )}
 
-        {navLinks.map(({ href, label, icon: Icon, exact }) => {
-          const active = exact ? pathname === href : pathname.startsWith(href);
+        {navItems.map((item) => {
+          if (item.kind === "link") {
+            const active = item.exact
+              ? pathname === item.href
+              : pathname.startsWith(item.href);
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={clsx(linkBase, active ? activeClasses : inactiveClasses)}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                {item.label}
+              </Link>
+            );
+          }
+
+          const Icon = item.icon;
+          const hasActiveChild = item.children.some(isChildActive);
+          const open = openGroups[item.id] ?? hasActiveChild;
+
           return (
-            <Link
-              key={href}
-              href={href}
-              className={clsx(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                active
-                  ? "bg-white/15 text-white"
-                  : "text-white/70 hover:bg-white/8 hover:text-white"
+            <div key={item.id}>
+              <button
+                type="button"
+                onClick={() => toggleGroup(item.id)}
+                aria-expanded={open}
+                className={clsx(
+                  linkBase,
+                  "w-full",
+                  hasActiveChild ? "text-white" : inactiveClasses
+                )}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                <span className="flex-1 text-left">{item.label}</span>
+                <ChevronDown
+                  className={clsx(
+                    "h-4 w-4 shrink-0 transition-transform",
+                    open ? "rotate-180" : "rotate-0"
+                  )}
+                />
+              </button>
+
+              {open && (
+                <div className="mt-1 flex flex-col gap-1 border-l border-white/10 pl-3 ml-4">
+                  {item.children.map((child) => {
+                    const active = isChildActive(child);
+                    return (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className={clsx(
+                          "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                          active ? activeClasses : inactiveClasses
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    );
+                  })}
+                </div>
               )}
-            >
-              <Icon className="h-4 w-4 shrink-0" />
-              {label}
-            </Link>
+            </div>
           );
         })}
       </nav>
