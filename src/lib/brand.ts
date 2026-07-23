@@ -4,4 +4,5 @@ export const BRAND_ASSETS = {
   wordmarkWhite: "/brand/wordmark-white.svg",
   wordmarkInk: "/brand/wordmark-ink.svg",
   logoPrimarySpectrum: "/brand/logo-primary-spectrum.svg",
+  gileadLogo: "/brand/gilead-logo.png",
 } as const;

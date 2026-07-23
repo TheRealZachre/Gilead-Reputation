@@ -32,28 +32,19 @@ function CompanyLogoMark({
     <div
       className={
         variant === "full"
-          ? "mx-auto inline-flex items-baseline rounded-lg bg-white px-4 py-2"
-          : "inline-flex items-baseline rounded-lg bg-white px-4 py-2"
+          ? "mx-auto inline-flex items-center justify-center rounded-lg bg-white px-4 py-3"
+          : "inline-flex items-center justify-center rounded-lg bg-white px-3 py-2"
       }
     >
-      <span
+      <BrandAsset
+        src={BRAND_ASSETS.gileadLogo}
+        alt="Gilead Sciences"
         className={
           variant === "full"
-            ? "font-serif text-2xl font-normal leading-none tracking-tight text-[#C8102E]"
-            : "font-serif text-xl font-normal leading-none tracking-tight text-[#C8102E]"
+            ? "h-16 w-auto object-contain"
+            : "h-12 w-auto object-contain"
         }
-      >
-        Gilead
-      </span>
-      <span
-        className={
-          variant === "full"
-            ? "ml-1.5 text-sm font-medium uppercase tracking-[0.18em] text-[#0b1f3a]"
-            : "ml-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#0b1f3a]"
-        }
-      >
-        Sciences
-      </span>
+      />
     </div>
   );
 
