@@ -24,6 +24,7 @@ import {
 } from "@/lib/reputation/data";
 import { RatingTrendsSection } from "./RatingTrendsSection";
 import { CompetitorsTab } from "./CompetitorsPage";
+import { PlaybookTab } from "./ScorePlaybook";
 import { CopyReply, SortableHead, useSortedRows, type SortColumn } from "./shared";
 
 const GLASSDOOR_REVIEW_COLUMNS: SortColumn<(typeof COMPANY.glassdoor.recentReviews)[number]>[] = [
@@ -472,6 +473,7 @@ export function ReputationHome({ tab }: { tab: HomeTab }) {
           {tab === "glassdoor" && <GlassdoorTab />}
           {tab === "indeed" && <IndeedTab />}
           {tab === "competitors" && <CompetitorsTab />}
+          {tab === "playbook" && <PlaybookTab />}
           {tab === "replies" && <RepliesTab />}
         </main>
 

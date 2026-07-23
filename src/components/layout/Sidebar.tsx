@@ -33,6 +33,7 @@ const navItems: NavNode[] = [
       { href: "/glassdoor", label: "Glassdoor" },
       { href: "/indeed", label: "Indeed" },
       { href: "/competitors", label: "Competitors" },
+      { href: "/playbook", label: "Improve your score" },
       { href: "/replies", label: "Copy replies" },
     ],
   },

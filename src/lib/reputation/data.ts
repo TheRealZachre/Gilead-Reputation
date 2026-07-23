@@ -1,4 +1,4 @@
-export type HomeTab = "overview" | "glassdoor" | "indeed" | "replies" | "competitors";
+export type HomeTab = "overview" | "glassdoor" | "indeed" | "replies" | "competitors" | "playbook";
 
 export type ReplyDraft = {
   id: string;
