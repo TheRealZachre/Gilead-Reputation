@@ -5,14 +5,17 @@ import { useRouter } from "next/navigation";
 import { RefreshCw } from "lucide-react";
 import type { RefreshMeta } from "@/lib/reputation/refresh";
 
-function formatDate(iso?: string): string {
+function formatDateTime(iso?: string): string {
   if (!iso) return "—";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString(undefined, {
+  return d.toLocaleString(undefined, {
     year: "numeric",
     month: "short",
     day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
   });
 }
 
@@ -62,7 +65,7 @@ export function RefreshButton({ platform }: { platform: "Glassdoor" | "Indeed" }
         <RefreshCw size={15} className={loading ? "spin" : ""} />
         {loading ? "Refreshing…" : `Refresh ${platform} data`}
       </button>
-      <span className="muted">Last updated {formatDate(meta?.lastUpdated)}</span>
+      <span className="muted">Last updated {formatDateTime(meta?.lastUpdated)}</span>
       {message && (
         <span className="muted refresh-msg" role="status">
           {message}
