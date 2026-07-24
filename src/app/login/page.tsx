@@ -14,7 +14,6 @@ export default async function LoginPage() {
     <AuthShell
       title="Welcome back"
       subtitle="Sign in to access the employer brand dashboard"
-      vcfHref="/login"
     >
       <Suspense fallback={<p className="text-sm text-brand-muted">Loading…</p>}>
         <LoginForm />

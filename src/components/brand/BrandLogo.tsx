@@ -67,26 +67,38 @@ export function BrandLogo({
   vcfHref,
   companyHref = "/",
 }: BrandLogoProps & { companyHref?: string | null }) {
+  const vcfSizeClass =
+    variant === "full"
+      ? "mx-auto h-11 w-auto max-w-[15rem]"
+      : "mx-auto h-10 w-auto max-w-[14rem]";
+
   const vibeCodeFlowWordmark = (
     <BrandAsset
-      src={BRAND_ASSETS.wordmarkWhite}
+      src={BRAND_ASSETS.vcfLockupDark}
       alt="Vibe. Code. Flow."
-      className={
-        variant === "full"
-          ? "mx-auto mt-3 h-7 w-auto max-w-[12rem]"
-          : "mt-2.5 h-7 w-auto max-w-[12rem]"
-      }
+      className={vcfSizeClass}
     />
   );
 
+  const vcfLinkClass =
+    "inline-flex rounded-sm transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-indigo-bright";
+
   const vibeCodeFlowMark = vcfHref ? (
-    <Link
-      href={vcfHref}
-      className="inline-block rounded-sm transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-indigo-bright"
-      aria-label="Vibe. Code. Flow."
-    >
-      {vibeCodeFlowWordmark}
-    </Link>
+    vcfHref.startsWith("http") ? (
+      <a
+        href={vcfHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={vcfLinkClass}
+        aria-label="Vibe. Code. Flow."
+      >
+        {vibeCodeFlowWordmark}
+      </a>
+    ) : (
+      <Link href={vcfHref} className={vcfLinkClass} aria-label="Vibe. Code. Flow.">
+        {vibeCodeFlowWordmark}
+      </Link>
+    )
   ) : (
     vibeCodeFlowWordmark
   );
@@ -104,26 +116,30 @@ export function BrandLogo({
   if (variant === "full") {
     return (
       <div className="text-center">
-        <CompanyLogoMark variant="full" href={companyHref ?? undefined} />
+        <div className="flex justify-center">{vibeCodeFlowMark}</div>
+        <div className="mt-5 flex justify-center">
+          <CompanyLogoMark variant="full" href={companyHref ?? undefined} />
+        </div>
         {showTagline && (
           <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-white/60">
             {PLATFORM_TAGLINE}
           </p>
         )}
-        {vibeCodeFlowMark}
       </div>
     );
   }
 
   return (
-    <div className="min-w-0">
-      <CompanyLogoMark variant="sidebar" href={companyHref ?? undefined} />
+    <div className="text-center">
+      <div className="flex justify-center">{vibeCodeFlowMark}</div>
+      <div className="mt-4 flex justify-center">
+        <CompanyLogoMark variant="sidebar" href={companyHref ?? undefined} />
+      </div>
       {showTagline && (
         <p className="mt-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white/50">
           {PLATFORM_TAGLINE}
         </p>
       )}
-      {vibeCodeFlowMark}
     </div>
   );
 }

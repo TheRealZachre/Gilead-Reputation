@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   BookOpen,
   ChevronDown,
+  Info,
   Star,
   Shield,
   type LucideIcon,
@@ -65,6 +66,7 @@ export function Sidebar({
 }) {
   const pathname = usePathname();
   const adminActive = pathname.startsWith("/admin");
+  const introActive = pathname.startsWith("/introduction");
 
   const isChildActive = (child: NavChild) =>
     child.exact
@@ -79,7 +81,7 @@ export function Sidebar({
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-brand-border bg-brand-stage text-brand-off-white">
       <div className="border-b border-brand-border px-5 py-5">
-        <BrandLogo showTagline vcfHref="/" />
+        <BrandLogo showTagline vcfHref="https://vibecodeflow.com" companyHref="/introduction" />
       </div>
 
       <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
@@ -93,6 +95,15 @@ export function Sidebar({
             Platform Admin
           </Link>
         )}
+
+        <Link
+          href="/introduction"
+          onClick={onNavigate}
+          className={clsx(linkBase, introActive ? activeClasses : inactiveClasses)}
+        >
+          <Info className="h-4 w-4 shrink-0" />
+          Introduction
+        </Link>
 
         {navItems.map((item) => {
           if (item.kind === "link") {
@@ -166,13 +177,13 @@ export function Sidebar({
 
       <div className="space-y-4 border-t border-brand-border p-4">
         <UserMenu user={user} />
-        <div>
+        <div className="text-center">
           <p className="text-xs text-white/45">Powered by</p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={BRAND_ASSETS.wordmarkWhite}
+            src={BRAND_ASSETS.vcfLockupDark}
             alt={POWERED_BY_NAME}
-            className="mt-1.5 h-5 w-auto max-w-[9.5rem]"
+            className="mx-auto mt-2 h-8 w-auto max-w-[13rem]"
           />
         </div>
       </div>

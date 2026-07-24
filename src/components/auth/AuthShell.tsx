@@ -6,7 +6,7 @@ export function AuthShell({
   title,
   subtitle,
   children,
-  vcfHref = "/login",
+  vcfHref = "https://vibecodeflow.com",
 }: {
   title: string;
   subtitle: string;

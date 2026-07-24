@@ -50,7 +50,7 @@ export function AppShell({ children, isAdmin = false, user }: AppShellProps) {
 
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Mobile top bar */}
-        <header className="flex items-center gap-3 border-b border-brand-ink/10 bg-white px-4 py-3 lg:hidden">
+        <header className="grid grid-cols-[auto_1fr_auto] items-center gap-3 border-b border-brand-ink/10 bg-white px-4 py-3 lg:hidden">
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
@@ -59,11 +59,25 @@ export function AppShell({ children, isAdmin = false, user }: AppShellProps) {
           >
             <Menu className="h-6 w-6" />
           </button>
+          <a
+            href="https://vibecodeflow.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center"
+            aria-label="Vibe. Code. Flow."
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={BRAND_ASSETS.vcfLockupLight}
+              alt="Vibe. Code. Flow."
+              className="h-8 w-auto max-w-[11rem]"
+            />
+          </a>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={BRAND_ASSETS.gileadLogo}
             alt="Gilead Sciences"
-            className="h-6 w-auto"
+            className="h-6 w-auto justify-self-end"
           />
         </header>
 
